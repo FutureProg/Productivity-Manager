@@ -1,0 +1,51 @@
+
+<svg width="114px" height="126px" viewBox="0 0 114 126" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.1 (47250) - http://www.bohemiancoding.com/sketch -->
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <filter x="-13.8%" y="-3.8%" width="127.6%" height="115.4%" filterUnits="objectBoundingBox" id="filter-1">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="1" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+        <rect id="path-2" x="1" y="17" width="27" height="4"></rect>
+        <filter x="-6.5%" y="-31.2%" width="113.0%" height="187.5%" filterUnits="objectBoundingBox" id="filter-3">
+            <feOffset dx="0" dy="0.5" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="0.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <rect id="path-4" x="10" y="0" width="95" height="18"></rect>
+        <filter x="-2.6%" y="-8.3%" width="105.3%" height="133.3%" filterUnits="objectBoundingBox" id="filter-5">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="0.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Trashcan" transform="translate(0.000000, -7.000000)">
+            <g id="Group">
+                <g id="cup" filter="url(#filter-1)" transform="translate(31.129538, 29.691967) rotate(-25.000000) translate(-31.129538, -29.691967) translate(16.629538, 3.691967)">
+                    <rect id="Rectangle-5" fill="#FFFFFF" transform="translate(12.889717, 10.007081) rotate(-11.000000) translate(-12.889717, -10.007081) " x="11.8897171" y="0.00708082985" width="2" height="20"></rect>
+                    <polygon id="Rectangle-3" fill="#FF5555" points="1 19 28.0992271 19 25 52 5 52"></polygon>
+                    <g id="Rectangle-4">
+                        <use fill="black" fill-opacity="1" filter="url(#filter-3)" xlink:href="#path-2"></use>
+                        <use fill="#FFC8C8" fill-rule="evenodd" xlink:href="#path-2"></use>
+                    </g>
+                    <rect id="Rectangle-4-Copy" fill="#FFC8C8" x="0" y="17" width="29" height="4"></rect>
+                </g>
+                <g id="Can" transform="translate(0.000000, 33.000000)">
+                    <polygon id="Rectangle" fill="#D8D8D8" points="10 17 105 17 97.6923077 100 20.0480769 100"></polygon>
+                    <g id="Rectangle-2-Copy">
+                        <use fill="black" fill-opacity="1" filter="url(#filter-5)" xlink:href="#path-4"></use>
+                        <use fill="#D8D8D8" fill-rule="evenodd" xlink:href="#path-4"></use>
+                    </g>
+                    <rect id="Rectangle-2" fill="#D8D8D8" x="0" y="0" width="114" height="18"></rect>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

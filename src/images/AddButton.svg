@@ -1,0 +1,14 @@
+
+<svg width="255px" height="255px" viewBox="0 0 255 255" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.1 (47250) - http://www.bohemiancoding.com/sketch -->
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Button/Add">
+            <g>
+                <rect id="Rectangle" stroke="#000000" stroke-width="2" x="1" y="1" width="253" height="253" rx="2"></rect>
+                <path d="M136,118.5 L188.5,118.5 L188.5,135.5 L136,135.5 L136,188 L119,188 L119,135.5 L66.5,135.5 L66.5,118.5 L119,118.5 L119,66 L136,66 L136,118.5 Z" id="Combined-Shape" fill="#000000"></path>
+            </g>
+        </g>
+    </g>
+</svg>

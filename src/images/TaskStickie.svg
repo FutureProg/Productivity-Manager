@@ -1,0 +1,24 @@
+
+<svg width="263px" height="262px" viewBox="0 0 263 262" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.1 (47250) - http://www.bohemiancoding.com/sketch -->
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <polygon id="path-1" points="27.8384279 14 226.048035 14 255 256 0 256"></polygon>
+        <filter x="-2.7%" y="-2.1%" width="105.5%" height="105.8%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Stickie/Task" transform="translate(4.000000, 0.000000)">
+            <g id="BG">
+                <g id="Shadow" fill="black" fill-opacity="1">
+                    <use filter="url(#filter-2)" xlink:href="#path-1"></use>
+                </g>
+                <rect id="Rectangle" fill="#F8F926" x="0" y="0" width="255" height="255"></rect>
+                <rect id="Rectangle-2" fill-opacity="0.0600000061" fill="#000000" x="0" y="0" width="255" height="27"></rect>
+            </g>
+        </g>
+    </g>
+</svg>
