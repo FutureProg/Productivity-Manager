@@ -31,12 +31,19 @@ class TopicColumn extends React.Component<Props,{}>{
 						var item2 = {...item,lastStickie:last,tasksInTopic:array.length}
 						if(item.steps && item.steps.length > 0){
 							const taskIndex = index;
+							const indexedSteps = item.steps.map((item,index)=>({...item,index}));
+							const taskHeight = (255 + 60 * item.steps.filter((value)=>!value.done).length);
 							return (
-								<div key={1+index} style={{position:'relative',height:(255 + 60 * item.steps.length) + "px"}}>
+								<div key={1+index} style={{position:'relative',height: taskHeight + "px"}}>
 									<TaskStickie key={1+index} {...item2}/>									
-									{
-										item.steps.filter((value)=>!value.done).map((item,index,array)=>
-											<StepStickie zIndex={array.length-index} taskIndex={taskIndex} text={item.text} done={item.done} index={index} key={index} />
+									{			 
+										indexedSteps.filter((value)=>!value.done).map((item,index,array)=>
+											<StepStickie zIndex={array.length-index} 
+												taskIndex={taskIndex} 
+												text={item.text} 
+												done={item.done} 
+												filteredIndex={index}
+												index={item.index} key={index} />
 										)
 									}
 								</div>

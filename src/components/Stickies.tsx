@@ -28,6 +28,7 @@ export class TopicStickie extends React.Component<TopicProps,any>{
 
 interface StepProps extends StepObject{
 	index: number;
+	filteredIndex:number;
 	zIndex: number;
 	taskIndex: number;
 	connectDragSource?: any;
@@ -45,7 +46,7 @@ class _StepStickie extends React.Component<StepProps,any>{
 	render(){
 		const _style = {
 			backgroundImage:`url(${StepStickieImage})`,
-			top: (50 + 50*this.props.index) + "px",
+			top: (50 + 50*this.props.filteredIndex) + "px",
 			zIndex: this.props.zIndex
 		}
 		const _cname = classNames("stickie-step",{

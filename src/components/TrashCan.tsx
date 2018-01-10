@@ -52,6 +52,7 @@ const target = {
 		component.setState({
 			dropped: true
 		});
+		console.log(monitor.getItemType());
 		if(monitor.getItemType() == StickieTypes.TASK){
 			props.markTaskAsDone(monitor.getItem());
 		}
