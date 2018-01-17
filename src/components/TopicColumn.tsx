@@ -30,7 +30,7 @@ class TopicColumn extends React.Component<Props,{}>{
 						if(index+1 == array.length) last = true;
 						var item2 = {...item,lastStickie:last,tasksInTopic:array.length}
 						if(item.steps && item.steps.length > 0){
-							const taskIndex = index;
+							const taskIndex = item.arrayIndex;
 							const indexedSteps = item.steps.map((item,index)=>({...item,index}));
 							const taskHeight = (255 + 60 * item.steps.filter((value)=>!value.done).length);
 							return (
