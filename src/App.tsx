@@ -3,7 +3,9 @@ import * as HTML5Backend from 'react-dnd-html5-backend';
 import {DragDropContext} from 'react-dnd';
 import {connect} from 'react-redux';
 import * as ModalActions from './actions/modals';
+import * as Cookies from 'es-cookie';
 
+import WelcomeScreen from './pages/Welcome';
 import TopicColumn from './components/TopicColumn';
 import AddTopicModal from './components/modals/AddTopicModal';
 import AddTaskModal from './components/modals/AddTaskModal';
@@ -29,19 +31,24 @@ class App extends React.Component<AppProps,{}> {
         re.push(<TopicColumn key={i} index={i}/>)
       return re;
     }
-    return (
-      <div className="App">              
-        <div id="column-container"
+    const loggedInContent = (
+      <div id="column-container"
           style={{gridTemplateColumns:`240px repeat(${this.props.topics.length+1}, 260px)`}}>
           <div style={{gridColumn:1,gridRow:1}}>
             <h1>Topic</h1>
             <h1 style={{marginTop:'250px'}}>Tasks</h1>  
           </div>
           {cols()}
-        </div>
+      </div>
+    );
+    return (
+      <div className="App">              
+        {
+          Cookies.get("user_id") ? loggedInContent : <WelcomeScreen/>
+        }
         <AddTopicModal/>
         <AddTaskModal/>
-        <TrashCan/>
+        {Cookies.get("user_id") ? <TrashCan/> : null}
         <CustomDragLayer/>
         <TaskDetailModal/>
       </div>
