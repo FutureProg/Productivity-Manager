@@ -7,3 +7,12 @@
 	margin: 0 auto;
 	margin-top: 10%;
 }
+
+#welcome-page #option-area{
+	display: grid;
+	grid-template-columns: 1.5fr 2fr
+}
+
+input{
+	margin-bottom: 10px;
+}
