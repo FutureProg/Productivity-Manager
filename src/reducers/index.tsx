@@ -109,7 +109,7 @@ export function topics(state: TopicState, action: TopicAction): TopicState{
 		return {
 			cards: [
 				...state.cards,
-				action.payload
+				{text: action.payload}
 			]
 		}		
 	}

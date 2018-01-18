@@ -23,7 +23,11 @@ export interface AddTaskModalState{
 }
 
 export interface TopicState {
-	cards: string[];
+	cards: TopicObject[];
+}
+export interface TopicObject{
+	_id?: number;
+	text: string;
 }
 
 export interface TaskState {
@@ -31,6 +35,7 @@ export interface TaskState {
 }
 
 export interface TaskObject{
+	_id?: number;
 	text: string;
 	topic_col: number;
 	done: boolean;

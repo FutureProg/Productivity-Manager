@@ -10,7 +10,7 @@ import AddTaskModal from './components/modals/AddTaskModal';
 import TrashCan from './components/TrashCan';
 
 import './App.css';
-import { StoreState } from './types/index';
+import { StoreState, TopicObject } from './types/index';
 import CustomDragLayer from './components/CustomDragLayer';
 import TaskDetailModal from './components/modals/TaskDetailModal';
 
@@ -18,7 +18,7 @@ import TaskDetailModal from './components/modals/TaskDetailModal';
 
 interface AppProps{  
     openAddTopicModal: any;
-    topics: string[];
+    topics: TopicObject[];
 }
 
 class App extends React.Component<AppProps,{}> {

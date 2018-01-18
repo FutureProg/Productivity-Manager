@@ -3,13 +3,13 @@ import {connect} from 'react-redux';
 
 import * as ModalActions from '../actions/modals';
 import { AddButton } from './AddButton';
-import { StoreState, TaskObject } from '../types/index';
+import { StoreState, TaskObject, TopicObject } from '../types/index';
 import {TopicStickie,TaskStickie,StepStickie} from './Stickies';
 
 interface Props{
 	openAddTopicModal:any;
 	openAddTaskModal: any;
-	topics: string[];
+	topics: TopicObject[];
 	index: number;	
 	tasks: TaskObject[];
 }
@@ -56,7 +56,7 @@ class TopicColumn extends React.Component<Props,{}>{
 				this.props.openAddTaskModal(this.props.index);
 			}
 			render = [				
-				<TopicStickie key={0} text={this.props.topics[this.props.index]}/>,
+				<TopicStickie key={0} text={this.props.topics[this.props.index].text}/>,
 				taskStickies,
 				<AddButton key={1+taskStickies.length} onClick={add_task}/>
 			]
