@@ -13,6 +13,12 @@
 	grid-template-columns: 1.5fr 2fr
 }
 
-input{
+#welcome-page .error-label{
+	display: block;
+	color: rgb(243, 31, 31);
+	min-height: 1em;
+}
+
+#welcome-page input{
 	margin-bottom: 10px;
 }

@@ -6,6 +6,16 @@ export interface StoreState {
 	addTaskModal: AddTaskModalState;
 
 	taskDetailModal: TaskDetailModalState;
+
+	user: UserState;
+}
+
+export interface UserState {
+	_id?: string;
+	fname?: string;
+	lname?: string;
+	email?: string;
+
 }
 
 export interface TaskDetailModalState {
@@ -26,7 +36,7 @@ export interface TopicState {
 	cards: TopicObject[];
 }
 export interface TopicObject{
-	_id?: number;
+	_id?: string;
 	text: string;
 }
 
@@ -35,7 +45,7 @@ export interface TaskState {
 }
 
 export interface TaskObject{
-	_id?: number;
+	_id?: string;
 	text: string;
 	topic_col: number;
 	done: boolean;

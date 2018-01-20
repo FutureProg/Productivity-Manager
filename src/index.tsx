@@ -28,6 +28,8 @@ const store = createStore<StoreState>(reducers,{
   taskDetailModal:{
     visible: false,
     taskIndex: -1
+  },
+  user:{        
   }
 },composeEnhancers(applyMiddleware(thunk)));
 

@@ -3,8 +3,9 @@ import {combineReducers} from 'redux';
 import {AddTopicModalAction, addTaskModalAction, TaskDetailModalAction} from '../actions/modals';
 import {TopicAction} from '../actions/topics';
 import * as constants from '../constants';
-import {StoreState,AddTopicModalState,TopicState, TaskState, AddTaskModalState, TaskDetailModalState, TaskObject} from '../types';
+import {StoreState,AddTopicModalState,TopicState, TaskState, AddTaskModalState, TaskDetailModalState, TaskObject, UserState} from '../types';
 import { TaskAction } from '../actions/tasks';
+import { UserActions } from '../actions/user';
 
 export function tasks(state: TaskState, action: TaskAction): TaskState{
 	if(!state){
@@ -185,11 +186,23 @@ export function addTopicModal(state: AddTopicModalState, action: AddTopicModalAc
 	return state;
 }
 
+export function user(state: UserState, action:UserActions): UserState{
+	if(!state){
+		return {};
+	}
+	switch(action.type){
+		case constants.SIGN_UP_SUCCESS:
+		return action.payload;		
+	}
+	return state;
+}
+
 export default combineReducers<StoreState>({
 	topics,
 	addTopicModal,
 	tasks,
 	addTaskModal,
-	taskDetailModal
+	taskDetailModal,
+	user
 });
 

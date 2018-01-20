@@ -1,3 +1,5 @@
+export const SALT_ROUNDS = 10;
+
 export const DELETE_TOPIC = 'DELETE_TOPIC';
 export type DELETE_TOPIC = typeof DELETE_TOPIC;
 
@@ -39,3 +41,21 @@ export type CLOSE_ADD_TASK_MODAL = typeof CLOSE_ADD_TASK_MODAL;
 
 export const MARK_STEP_AS_DONE = 'MARK_STEP_AS_DONE';
 export type MARK_STEP_AS_DONE = typeof MARK_STEP_AS_DONE;
+
+export const LOGIN = "LOGIN";
+export type LOGIN = typeof LOGIN;
+
+export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
+export type LOGIN_SUCCESS = typeof LOGIN_SUCCESS;
+
+export const LOGIN_FAILURE = "LOGIN_FAILURE";
+export type LOGIN_FAILURE = typeof LOGIN_FAILURE;
+
+export const SIGN_UP = "SIGN_UP";
+export type SIGN_UP = typeof SIGN_UP;
+
+export const SIGN_UP_SUCCESS = "SIGN_UP_SUCCESS";
+export type SIGN_UP_SUCCESS = typeof SIGN_UP_SUCCESS;
+
+export const SIGN_UP_FAILURE = "SIGN_UP_FAILURE";
+export type SIGN_UP_FAILURE = typeof SIGN_UP_FAILURE;
