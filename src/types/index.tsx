@@ -8,6 +8,8 @@ export interface StoreState {
 	taskDetailModal: TaskDetailModalState;
 
 	user: UserState;
+
+	system: SystemState;
 }
 
 export interface UserState {
@@ -57,4 +59,14 @@ export interface TaskObject{
 export interface StepObject{
 	text: string;
 	done: boolean;
+}
+
+export interface SystemState{
+	syncStatus: SyncStatus;
+}
+
+export interface SyncStatus{
+	needsSync: boolean;
+	error: boolean;
+	syncing: boolean;
 }

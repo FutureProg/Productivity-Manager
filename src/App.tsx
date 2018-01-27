@@ -10,6 +10,7 @@ import TopicColumn from './components/TopicColumn';
 import AddTopicModal from './components/modals/AddTopicModal';
 import AddTaskModal from './components/modals/AddTaskModal';
 import TrashCan from './components/TrashCan';
+import StatusMessage from './components/StatusMessage';
 
 import './App.css';
 import { StoreState, TopicObject } from './types/index';
@@ -48,7 +49,8 @@ class App extends React.Component<AppProps,{}> {
         }
         <AddTopicModal/>
         <AddTaskModal/>
-        {Cookies.get("user_id") ? <TrashCan/> : null}
+      {Cookies.get("user_id") ? <TrashCan/>: null}
+      {Cookies.get("user_id") ? <StatusMessage/>: null}
         <CustomDragLayer/>
         <TaskDetailModal/>
       </div>

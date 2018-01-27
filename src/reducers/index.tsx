@@ -3,9 +3,65 @@ import {combineReducers} from 'redux';
 import {AddTopicModalAction, addTaskModalAction, TaskDetailModalAction} from '../actions/modals';
 import {TopicAction} from '../actions/topics';
 import * as constants from '../constants';
-import {StoreState,AddTopicModalState,TopicState, TaskState, AddTaskModalState, TaskDetailModalState, TaskObject, UserState} from '../types';
+import {StoreState,AddTopicModalState,TopicState, TaskState, AddTaskModalState, TaskDetailModalState, TaskObject, UserState, SystemState} from '../types';
 import { TaskAction } from '../actions/tasks';
 import { UserActions } from '../actions/user';
+
+export function system(state: SystemState, action: any): SystemState{
+	if(!state){
+		return {
+			syncStatus: {
+				error: false,
+				needsSync: false,
+				syncing: false
+			}		
+		}
+	}
+	switch(action.type){
+		case constants.SYNC_SUCCESS:
+		return {
+			...state,
+			syncStatus:{
+				error: false,
+				needsSync: false,
+				syncing: false
+			}
+		}
+		case constants.SYNC_FAILURE:
+		return {
+			...state,
+			syncStatus:{
+				error: true,
+				needsSync: true,
+				syncing: false
+			}
+		}		
+		case constants.REQUEST_SYNC:
+		return {
+			...state,
+			syncStatus:{
+				...state.syncStatus,
+				syncing: true
+			}
+		}
+		case constants.CHANGES_MADE:
+		case constants.ADD_TASK:
+		case constants.ADD_TOPIC:
+		case constants.UPDATE_TASK:
+		case constants.MOVE_TASK:
+		case constants.MARK_STEP_AS_DONE:
+		case constants.MARK_TASK_DONE:
+		return {
+			...state,
+			syncStatus:{
+				...state.syncStatus,
+				needsSync: true
+			}
+		}
+		default: 		
+		return state;
+	}	
+}
 
 export function tasks(state: TaskState, action: TaskAction): TaskState{
 	if(!state){
@@ -203,6 +259,7 @@ export default combineReducers<StoreState>({
 	tasks,
 	addTaskModal,
 	taskDetailModal,
-	user
+	user,
+	system
 });
 

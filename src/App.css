@@ -234,6 +234,13 @@ button.danger{
   animation-duration: 0.25s;
   transform-origin: bottom;
 }
+
+#status-message{
+  position: fixed;
+  bottom: 20px;
+  right: 20px;  
+}
+
 @keyframes hint-popin{
   70%{
     transform: translateY(-80px);

@@ -30,6 +30,13 @@ const store = createStore<StoreState>(reducers,{
     taskIndex: -1
   },
   user:{        
+  },
+  system:{
+    syncStatus:{
+      needsSync: false,
+      error: false,
+      syncing: false
+    }
   }
 },composeEnhancers(applyMiddleware(thunk)));
 

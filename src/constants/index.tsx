@@ -1,5 +1,3 @@
-export const SALT_ROUNDS = 10;
-
 export const DELETE_TOPIC = 'DELETE_TOPIC';
 export type DELETE_TOPIC = typeof DELETE_TOPIC;
 
@@ -59,3 +57,15 @@ export type SIGN_UP_SUCCESS = typeof SIGN_UP_SUCCESS;
 
 export const SIGN_UP_FAILURE = "SIGN_UP_FAILURE";
 export type SIGN_UP_FAILURE = typeof SIGN_UP_FAILURE;
+
+export const CHANGES_MADE = "CHANGES_MADE";
+export type CHANGES_MADE = typeof CHANGES_MADE;
+
+export const REQUEST_SYNC = "REQUEST_SYNC";
+export type REQUEST_SYNC = typeof REQUEST_SYNC;
+
+export const SYNC_FAILURE = "SYNC_FAILURE";
+export type SYNC_FAILURE = typeof SYNC_FAILURE;
+
+export const SYNC_SUCCESS = "SYNC_SUCCESS";
+export type SYNC_SUCCESS = typeof SYNC_SUCCESS;
