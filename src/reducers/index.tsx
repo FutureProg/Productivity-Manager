@@ -6,6 +6,7 @@ import * as constants from '../constants';
 import {StoreState,AddTopicModalState,TopicState, TaskState, AddTaskModalState, TaskDetailModalState, TaskObject, UserState, SystemState} from '../types';
 import { TaskAction } from '../actions/tasks';
 import { UserActions } from '../actions/user';
+import { SystemActions } from '../actions/system';
 
 export function system(state: SystemState, action: any): SystemState{
 	if(!state){
@@ -18,19 +19,30 @@ export function system(state: SystemState, action: any): SystemState{
 		}
 	}
 	switch(action.type){
+		case constants.SYNC_PULL:
+		return {
+			...state,
+			syncStatus:{
+				...state.syncStatus,
+				lastSyncTime: action.payload.timestamp
+			}
+		}
 		case constants.SYNC_SUCCESS:
 		return {
 			...state,
 			syncStatus:{
+				...state.syncStatus,
 				error: false,
 				needsSync: false,
-				syncing: false
+				syncing: false,
+				lastSyncTime: action.payload
 			}
 		}
 		case constants.SYNC_FAILURE:
 		return {
 			...state,
 			syncStatus:{
+				...state.syncStatus,
 				error: true,
 				needsSync: true,
 				syncing: false
@@ -63,7 +75,7 @@ export function system(state: SystemState, action: any): SystemState{
 	}	
 }
 
-export function tasks(state: TaskState, action: TaskAction): TaskState{
+export function tasks(state: TaskState, action: TaskAction | SystemActions): TaskState{
 	if(!state){
 		return {
 			tasks: []
@@ -76,6 +88,10 @@ export function tasks(state: TaskState, action: TaskAction): TaskState{
 				...state.tasks,
 				action.payload
 			]
+		}
+		case constants.SYNC_PULL:
+		return {
+			tasks: action.payload.tasks.tasks? [...action.payload.tasks.tasks]:[]
 		}
 		case constants.MARK_STEP_AS_DONE:
 		const tIndex = action.payload.taskIndex;
@@ -155,7 +171,7 @@ export function tasks(state: TaskState, action: TaskAction): TaskState{
 	return state;
 }
 
-export function topics(state: TopicState, action: TopicAction): TopicState{	
+export function topics(state: TopicState, action: TopicAction | SystemActions): TopicState{	
 	if(!state){
 		return {
 			cards: []
@@ -168,7 +184,12 @@ export function topics(state: TopicState, action: TopicAction): TopicState{
 				...state.cards,
 				{text: action.payload}
 			]
-		}		
+		}	
+		case constants.SYNC_PULL:
+		return {
+			cards: 	action.payload.topics.cards? [...action.payload.topics.cards]:[]
+			
+		}	
 	}
 	return state;
 }

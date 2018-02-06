@@ -16,6 +16,7 @@ import './App.css';
 import { StoreState, TopicObject } from './types/index';
 import CustomDragLayer from './components/CustomDragLayer';
 import TaskDetailModal from './components/modals/TaskDetailModal';
+import SystemManager from './components/SystemManager';
 
 // const logo = require('./logo.svg');
 
@@ -50,6 +51,7 @@ class App extends React.Component<AppProps,{}> {
         <AddTopicModal/>
         <AddTaskModal/>
       {Cookies.get("user_id") ? <TrashCan/>: null}
+      {Cookies.get("user_id") ? <SystemManager/>: null}
       {Cookies.get("user_id") ? <StatusMessage/>: null}
         <CustomDragLayer/>
         <TaskDetailModal/>

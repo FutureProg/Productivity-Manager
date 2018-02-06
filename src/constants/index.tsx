@@ -69,3 +69,6 @@ export type SYNC_FAILURE = typeof SYNC_FAILURE;
 
 export const SYNC_SUCCESS = "SYNC_SUCCESS";
 export type SYNC_SUCCESS = typeof SYNC_SUCCESS;
+
+export const SYNC_PULL = "SYNC_PULL";
+export type SYNC_PULL = "SYNC_PULL";

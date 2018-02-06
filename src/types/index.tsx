@@ -69,4 +69,6 @@ export interface SyncStatus{
 	needsSync: boolean;
 	error: boolean;
 	syncing: boolean;
+
+	lastSyncTime?: number;
 }

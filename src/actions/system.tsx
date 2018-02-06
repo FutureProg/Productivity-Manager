@@ -1,6 +1,6 @@
 import {createAction} from 'redux-actions';
 import * as constants from '../constants';
-import { StoreState, TopicState } from '../types/index';
+import { StoreState, TopicState, TaskState, SystemState } from '../types/index';
 import { Dispatch } from 'react-redux';
 import * as Cookies from 'es-cookie';
 
@@ -20,26 +20,60 @@ export interface SYNC_FAILURE {
 }
 
 export interface SYNC_SUCCESS{
-	type: constants.SYNC_SUCCESS;	
+	type: constants.SYNC_SUCCESS;
+	payload: number;	
 }
+
+export interface SYNC_PULL{
+	type: constants.SYNC_PULL;
+	payload: {
+		_id:string,
+		topics: TopicState,
+		tasks: TaskState,
+		user_id:string,
+		timestamp:number
+	}
+}
+
 
 export let notifyChangesMade = createAction(constants.CHANGES_MADE);
 let syncFailure = createAction(constants.SYNC_FAILURE,(msg:string)=>(msg));
-let syncSuccess = createAction(constants.SYNC_SUCCESS);
-export let requestSync = (dispatch:Dispatch<StoreState>) =>(topics: TopicState)=>{	
-	fetch('http://159.203.63.171:3000/topics?user_id='+Cookies.get("user_id"),{
-		method: "POST",	
-		body: JSON.stringify(topics),
-		headers:{
-			'Content-Type':"application/json"			
+let syncSuccess = createAction(constants.SYNC_SUCCESS, (timestamp:number)=>(timestamp));
+let syncPull = createAction(constants.SYNC_PULL,(payload:any)=>(payload));
+
+export let grabSync = (dispatch:Dispatch<StoreState>) =>()=>{
+	fetch("http://159.203.63.171:3000/sync/"+Cookies.get("user_id"),{
+		method: "GET",
+		credentials: 'same-origin'
+	})
+	.then((response: Response)=>{
+		return response.json();
+	})
+	.then((response:JSON)=>{
+		dispatch(syncPull(response));
+	});
+}
+
+export let sendSync = (dispatch:Dispatch<StoreState>) =>(system: SystemState, topics: TopicState, tasks: TaskState)=>{
+	fetch("http://159.203.63.171:3000/sync",{
+		method: "POST",
+		headers: {
+			'Content-Type':'application/json'
 		},
-		credentials: 'same-origin'		
+		body: JSON.stringify({
+			user_id: Cookies.get("user_id"),
+			data:{
+				topics,
+				tasks
+			}
+		}),
+		credentials: 'same-origin'
 	})
 	.then((response:Response)=>{
 		return response.json();
 	})
-	.then((json:JSON)=>{
-		dispatch(syncSuccess());
+	.then((response:JSON)=>{		
+		dispatch(syncSuccess(response['timestamp']));
 	})
 	.catch((error:Error)=>{
 		console.log(error);
@@ -47,6 +81,29 @@ export let requestSync = (dispatch:Dispatch<StoreState>) =>(topics: TopicState)=
 	})
 }
 
-export type SyncActions = SYNC_SUCCESS | SYNC_FAILURE | REQUEST_SYNC | CHANGES_MADE;
+export let requestSync = (dispatch:Dispatch<StoreState>) =>(system: SystemState, topics: TopicState, tasks: TaskState)=>{
+	fetch('http://159.203.63.171:3000/lastUpdateTime/'+Cookies.get("user_id"),{
+		method: "GET",					
+		credentials: 'same-origin'		
+	})
+	.then((response:Response)=>{
+		return response.json();
+	})
+	.then((json:JSON)=>{
+		var time = json["timestamp"];
+		var lastTime = system.syncStatus.lastSyncTime;
+		if((lastTime && time > lastTime) || !lastTime){ // out of sync, grab
+			grabSync(dispatch)();
+		}else{ // out of sync, send
+			sendSync(dispatch)(system,topics,tasks);
+		}	
+	})
+	.catch((error:Error)=>{
+		console.log(error);
+		dispatch(syncFailure(error.message));
+	})
+}
+
+export type SyncActions = SYNC_PULL| SYNC_SUCCESS | SYNC_FAILURE | REQUEST_SYNC | CHANGES_MADE;
 
 export type SystemActions = SyncActions;

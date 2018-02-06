@@ -16,7 +16,7 @@ const store = createStore<StoreState>(reducers,{
     visible: false
   },
   topics:{
-    cards: [{text:"Hello"}]
+    cards: []
   },
   tasks:{
     tasks: []
