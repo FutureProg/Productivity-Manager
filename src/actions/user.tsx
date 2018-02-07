@@ -22,9 +22,40 @@ export interface LOGIN_FAILURE{
 	payload: string;
 }
 
-export let requestLogin = createAction(constants.LOGIN, (email: string, pass: string)=>({email,pass}));
+let requestingLogin = createAction(constants.LOGIN, (email: string, pass: string)=>({email,pass}));
 export let loginSuccess = createAction(constants.LOGIN_SUCCESS, (user:UserState)=>user);
 export let loginFailure = createAction(constants.LOGIN_FAILURE, (msg:string)=>msg);
+
+export let requestLogin = (dispatch: Dispatch<StoreState>)=>(email:string, pass:string)=>{	
+	dispatch(requestingLogin(email,pass));
+	fetch('http://159.203.63.171:3000/login',{
+		method: "POST",
+		body: JSON.stringify({
+			email,
+			pass
+		}),
+		headers: {
+			'Content-Type': "application/json",
+			'Access-Control-Allow-Origin':"*"
+		},
+		credentials: 'same-origin'
+	}).then((response: Response) =>{
+		if(response.status === 200){
+			return response.json();
+		}else{
+			return response.text();
+		}
+	})
+	.then((json:JSON)=>{
+		let usr = 	json as UserState;
+		Cookies.set("user_id",usr._id!);			
+		dispatch(loginSuccess(usr));
+	})
+	.catch((error:Error)=>{
+		console.log(error);
+		dispatch(loginFailure(error.message));
+	})
+}
 
 export interface SIGN_UP_REQUEST {
 	type: constants.SIGN_UP;

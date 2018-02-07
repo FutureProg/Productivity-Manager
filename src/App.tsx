@@ -13,7 +13,7 @@ import TrashCan from './components/TrashCan';
 import StatusMessage from './components/StatusMessage';
 
 import './App.css';
-import { StoreState, TopicObject } from './types/index';
+import { StoreState, TopicObject, UserState } from './types/index';
 import CustomDragLayer from './components/CustomDragLayer';
 import TaskDetailModal from './components/modals/TaskDetailModal';
 import SystemManager from './components/SystemManager';
@@ -22,6 +22,7 @@ import SystemManager from './components/SystemManager';
 
 interface AppProps{  
     openAddTopicModal: any;
+    user: UserState;
     topics: TopicObject[];
 }
 
@@ -65,7 +66,8 @@ const fstp = {
 }
 
 const mstp = (state:StoreState)=>({
-	topics: state.topics.cards
+  topics: state.topics.cards,
+  user: state.user
 })
 
 export default DragDropContext(HTML5Backend)(connect(mstp,fstp)(App));

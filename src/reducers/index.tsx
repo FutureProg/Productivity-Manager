@@ -63,6 +63,8 @@ export function system(state: SystemState, action: any): SystemState{
 		case constants.MOVE_TASK:
 		case constants.MARK_STEP_AS_DONE:
 		case constants.MARK_TASK_DONE:
+		case constants.DELETE_TASK:
+		case constants.DELETE_TOPIC:		
 		return {
 			...state,
 			syncStatus:{
@@ -109,7 +111,8 @@ export function tasks(state: TaskState, action: TaskAction | SystemActions): Tas
 						},
 						...state.tasks[tIndex].steps.slice(sIndex+1),
 					]
-				}
+				},
+				...state.tasks.slice(action.payload.taskIndex+1),				
 			]
 		}
 		case constants.UPDATE_TASK:
@@ -269,6 +272,7 @@ export function user(state: UserState, action:UserActions): UserState{
 	}
 	switch(action.type){
 		case constants.SIGN_UP_SUCCESS:
+		case constants.LOGIN_SUCCESS:
 		return action.payload;		
 	}
 	return state;

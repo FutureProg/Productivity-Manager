@@ -21,7 +21,7 @@ class SystemManager extends React.Component<Props,any>{
 			if(syncStatus.needsSync && !syncStatus.syncing){
 				this.props.requestSync(appState.system,appState.topics,appState.tasks);
 			}
-		},2500);
+		},5000);
 		this.props.grabSync();
 	}
 

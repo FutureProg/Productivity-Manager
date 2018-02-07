@@ -2,11 +2,11 @@ import * as React from 'react';
 import {connect,Dispatch} from 'react-redux';
 
 import './welcome.css';
-import { requestSignup } from '../actions/user';
+import { requestSignup, requestLogin } from '../actions/user';
 import { StoreState } from '../types/index';
 
 interface State {
-	loginError?: string;
+	loginError?: string;	
 	signUpError?: string;
 }
 
@@ -46,7 +46,7 @@ class WelcomeScreen extends React.Component<any,State>{
 				loginError:undefined
 			})
 		}
-		
+		this.props.login(this.login_email.value,this.login_pass.value);		
 	}
 
 	signUp(){
@@ -122,7 +122,8 @@ class WelcomeScreen extends React.Component<any,State>{
 }
 
 let fstp = (dispatch: Dispatch<StoreState>) =>({
-	signUp: dispatch(requestSignup)
+	signUp: dispatch(requestSignup),
+	login: dispatch(requestLogin)
 })
 
 export default connect(null,fstp)(WelcomeScreen);
