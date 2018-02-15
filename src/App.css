@@ -191,6 +191,7 @@ button.danger{
 }
 
 #trashcan{
+  z-index: 99;
   position: fixed;
   bottom: 20px;
   left: 20px;
