@@ -24,7 +24,7 @@ class StatusMessage extends React.Component<Props,any>{
 		}
 		if(this.props.syncStatus.syncing){
 			msg = "Sync in progress...";
-		}
+		}		
 		return (
 			<div id="status-message">
 				{msg}

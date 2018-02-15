@@ -37,6 +37,7 @@ export interface SYNC_PULL{
 
 
 export let notifyChangesMade = createAction(constants.CHANGES_MADE);
+let sync = createAction(constants.REQUEST_SYNC);
 let syncFailure = createAction(constants.SYNC_FAILURE,(msg:string)=>(msg));
 let syncSuccess = createAction(constants.SYNC_SUCCESS, (timestamp:number)=>(timestamp));
 let syncPull = createAction(constants.SYNC_PULL,(payload:any)=>(payload));
@@ -82,6 +83,7 @@ export let sendSync = (dispatch:Dispatch<StoreState>) =>(system: SystemState, to
 }
 
 export let requestSync = (dispatch:Dispatch<StoreState>) =>(system: SystemState, topics: TopicState, tasks: TaskState)=>{
+	dispatch(sync());
 	fetch('http://159.203.63.171:3000/lastUpdateTime/'+Cookies.get("user_id"),{
 		method: "GET",					
 		credentials: 'same-origin'		

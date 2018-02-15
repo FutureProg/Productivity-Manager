@@ -5,7 +5,9 @@ class CompletedTasksModal extends React.Component{
 
 	render(){
 		return (
-			<div></div>
+			<div className="modal">
+				
+			</div>
 		)
 	}	
 

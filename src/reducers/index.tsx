@@ -23,7 +23,7 @@ export function system(state: SystemState, action: any): SystemState{
 		return {
 			...state,
 			syncStatus:{
-				...state.syncStatus,
+				...state.syncStatus,				
 				lastSyncTime: action.payload.timestamp
 			}
 		}
