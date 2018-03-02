@@ -5,6 +5,8 @@ import './welcome.css';
 import { requestSignup, requestLogin } from '../actions/user';
 import { StoreState } from '../types/index';
 
+const LOGO = require('../images/Stick2It_Logo.png');
+
 interface State {
 	loginError?: string;	
 	signUpError?: string;
@@ -109,7 +111,7 @@ class WelcomeScreen extends React.Component<any,State>{
 		return (
 			<div id="welcome-page">
 				<div className="container">
-					<h1>Stick2It</h1>
+					<img src={LOGO} alt="Stick2It" width="80%" style={{marginBottom:'50px'}}/>
 					<div id="option-area">
 						{renderLogin}
 						{renderSignup}

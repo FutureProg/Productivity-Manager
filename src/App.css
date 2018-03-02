@@ -148,6 +148,8 @@ button.danger{
   line-height: 250px;
   cursor: move;
   transition: transform 0.5s;
+  padding: 5px;
+  box-sizing: border-box;
 }
 .stickie:hover{
   transform: scale(1.05);
@@ -167,7 +169,8 @@ button.danger{
   opacity: 1;
 }
 .stickie .text{  
-  font-family: Raleway-Light;
+  /* font-family: Raleway-Light; */
+  font-weight: 300;
   display: inline-block;
   vertical-align: middle;
   line-height: normal;  
@@ -239,6 +242,8 @@ button.danger{
 #status-message{
   position: fixed;
   bottom: 20px;
+  background: rgba(255, 255, 255, 0.5);
+  z-index: 99;
   right: 20px;  
 }
 
