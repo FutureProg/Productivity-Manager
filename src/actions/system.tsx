@@ -43,7 +43,7 @@ let syncSuccess = createAction(constants.SYNC_SUCCESS, (timestamp:number)=>(time
 let syncPull = createAction(constants.SYNC_PULL,(payload:any)=>(payload));
 
 export let grabSync = (dispatch:Dispatch<StoreState>) =>()=>{
-	fetch("https://159.203.63.171:3000/sync/"+Cookies.get("user_id"),{
+	fetch("https://nickmorrison.me:3000/sync/"+Cookies.get("user_id"),{
 		method: "GET",
 		credentials: 'same-origin'
 	})
@@ -56,7 +56,7 @@ export let grabSync = (dispatch:Dispatch<StoreState>) =>()=>{
 }
 
 export let sendSync = (dispatch:Dispatch<StoreState>) =>(system: SystemState, topics: TopicState, tasks: TaskState)=>{
-	fetch("https://159.203.63.171:3000/sync",{
+	fetch("https://nickmorrison.me:3000/sync",{
 		method: "POST",
 		headers: {
 			'Content-Type':'application/json'
@@ -84,7 +84,7 @@ export let sendSync = (dispatch:Dispatch<StoreState>) =>(system: SystemState, to
 
 export let requestSync = (dispatch:Dispatch<StoreState>) =>(system: SystemState, topics: TopicState, tasks: TaskState)=>{
 	dispatch(sync());
-	fetch('https://159.203.63.171:3000/lastUpdateTime/'+Cookies.get("user_id"),{
+	fetch('https://nickmorrison.me:3000/lastUpdateTime/'+Cookies.get("user_id"),{
 		method: "GET",					
 		credentials: 'same-origin'		
 	})
