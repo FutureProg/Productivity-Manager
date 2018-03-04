@@ -28,7 +28,7 @@ export let loginFailure = createAction(constants.LOGIN_FAILURE, (msg:string)=>ms
 
 export let requestLogin = (dispatch: Dispatch<StoreState>)=>(email:string, pass:string)=>{	
 	dispatch(requestingLogin(email,pass));
-	fetch('http://159.203.63.171:3000/login',{
+	fetch('https://159.203.63.171:3000/login',{
 		method: "POST",
 		body: JSON.stringify({
 			email,
@@ -79,7 +79,7 @@ export interface SIGN_UP_FAILURE {
 
 export let requestSignup = (dispatch:Dispatch<StoreState>) => (fname: string, lname: string,email:string,pass:string)=>{
 	dispatch(requestingSignup());
-	fetch('http://159.203.63.171:3000/user',{
+	fetch('https://159.203.63.171:3000/user',{
 		method: "POST",
 		body: JSON.stringify({fname,lname,email,pass}),
 		headers: {
