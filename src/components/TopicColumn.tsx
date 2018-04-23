@@ -59,7 +59,7 @@ class TopicColumn extends React.Component<Props,{}>{
 				this.props.openAddTaskModal(this.props.index);
 			}
 			render = [				
-				<TopicStickie key={0} text={this.props.topics[this.props.index].text}/>,
+				<TopicStickie key={0} index={this.props.index} text={this.props.topics[this.props.index].text}/>,
 				taskStickies,
 				<AddButton key={1+taskStickies.length} onClick={add_task}/>
 			]

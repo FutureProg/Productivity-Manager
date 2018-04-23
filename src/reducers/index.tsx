@@ -64,7 +64,8 @@ export function system(state: SystemState, action: any): SystemState{
 		case constants.MARK_STEP_AS_DONE:
 		case constants.MARK_TASK_DONE:
 		case constants.DELETE_TASK:
-		case constants.DELETE_TOPIC:		
+		case constants.DELETE_TOPIC:	
+		case constants.MARK_TOPIC_DONE:			
 		return {
 			...state,
 			syncStatus:{
@@ -77,7 +78,7 @@ export function system(state: SystemState, action: any): SystemState{
 	}	
 }
 
-export function tasks(state: TaskState, action: TaskAction | SystemActions): TaskState{
+export function tasks(state: TaskState, action: TaskAction | SystemActions | TopicAction): TaskState{
 	if(!state){
 		return {
 			tasks: []
@@ -145,6 +146,10 @@ export function tasks(state: TaskState, action: TaskAction | SystemActions): Tas
 				...state.tasks.slice(action.payload+1)
 			]			
 		}
+		case constants.DELETE_TOPIC:
+		return {
+			tasks: state.tasks.filter((item)=>item.topic_col != action.payload)
+		}
 		case constants.MOVE_TASK:	
 		if(action.payload.nIndex === action.payload.index) break;
 		const {index, nIndex, topic_col,movingDown} = action.payload;				
@@ -181,6 +186,25 @@ export function topics(state: TopicState, action: TopicAction | SystemActions): 
 		}
 	}
 	switch(action.type){
+		case constants.MARK_TOPIC_DONE:
+		return {
+			cards:state.cards.map((item,index)=>{
+				if(index == action.payload){
+					return {
+						...item,
+						done: true
+					};
+				}
+				return item;
+			})
+		};
+		case constants.DELETE_TOPIC:
+		return {
+			cards:[
+				...state.cards.slice(0,action.payload),
+				...state.cards.slice(action.payload+1)
+			]
+		};	
 		case constants.ADD_TOPIC:
 		return {
 			cards: [
@@ -220,7 +244,7 @@ export function taskDetailModal(state: TaskDetailModalState, action: TaskDetailM
 	return state;
 }
 
-export function topicDetailModal(state: TopicDetailModalState, action: TopicDetailModalAction): TopicDetailModalState{
+export function topicDetailModal(state: TopicDetailModalState, action: TopicDetailModalAction|TopicAction): TopicDetailModalState{
 	if(!state){
 		return {
 			visible: false,
@@ -232,6 +256,12 @@ export function topicDetailModal(state: TopicDetailModalState, action: TopicDeta
 		return {
 			...state,
 			visible: true,
+			topicIndex: action.payload
+		}
+		case constants.MARK_TOPIC_DONE:
+		return {
+			...state,
+			visible: action.payload == state.topicIndex? false: state.visible,
 			topicIndex: action.payload
 		}
 		case constants.CLOSE_TOPIC_DETAIL_MODAL:
@@ -310,6 +340,7 @@ export default combineReducers<StoreState>({
 	addTaskModal,
 	taskDetailModal,
 	user,
-	system
+	system,
+	topicDetailModal
 });
 

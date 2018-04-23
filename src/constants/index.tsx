@@ -1,6 +1,9 @@
 export const DELETE_TOPIC = 'DELETE_TOPIC';
 export type DELETE_TOPIC = typeof DELETE_TOPIC;
 
+export const MARK_TOPIC_DONE = 'MARK_TOPIC_DONE';
+export type MARK_TOPIC_DONE = typeof MARK_TOPIC_DONE;
+
 export const OPEN_ADD_TOPIC_MODAL = 'OPEN_ADD_TOPIC_MODAL';
 export type OPEN_ADD_TOPIC_MODAL = typeof OPEN_ADD_TOPIC_MODAL;
 

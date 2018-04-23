@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {connect} from 'react-redux';
 import {DragSource,DragSourceConnector, DragSourceMonitor} from 'react-dnd';
 
 import * as DragTypes from '../types/DragTypes';
@@ -7,6 +8,7 @@ const StepStickieImage = require('../images/StepStickie.svg');
 
 import {TaskStickie as TS} from './TaskStickie';
 import { StepObject } from '../types/index';
+import { openTopicDetailModal } from '../actions/modals';
 import { getEmptyImage } from 'react-dnd-html5-backend';
 import * as classNames from 'classnames';
 
@@ -14,13 +16,18 @@ const MoreIcon = require('../images/more.svg');
 
 interface TopicProps{
 	text: string; 
+	index:number;
+	openTopicDetailModal: typeof openTopicDetailModal;
 }
 
-export class TopicStickie extends React.Component<TopicProps,any>{
+class _TopicStickie extends React.Component<TopicProps,any>{
 
 	render(){
+		const openModal = ()=> {
+			this.props.openTopicDetailModal(this.props.index);
+		}
 		return (
-			<div style={{backgroundImage:`url(${TopicStickieImage})`}} className="stickie topic">
+			<div onClick={openModal} style={{backgroundImage:`url(${TopicStickieImage})`}} className="stickie topic">
 				<span className="text">{this.props.text}</span>				
 				<img src={MoreIcon} className="more"/>
 			</div>
@@ -29,7 +36,9 @@ export class TopicStickie extends React.Component<TopicProps,any>{
 
 }
 
-interface StepProps extends StepObject{
+export let TopicStickie = connect(null,{openTopicDetailModal})(_TopicStickie);
+
+interface StepProps extends StepObject {
 	index: number;
 	filteredIndex:number;
 	zIndex: number;
