@@ -10,6 +10,8 @@ import { StepObject } from '../types/index';
 import { getEmptyImage } from 'react-dnd-html5-backend';
 import * as classNames from 'classnames';
 
+const MoreIcon = require('../images/more.svg');
+
 interface TopicProps{
 	text: string; 
 }
@@ -20,6 +22,7 @@ export class TopicStickie extends React.Component<TopicProps,any>{
 		return (
 			<div style={{backgroundImage:`url(${TopicStickieImage})`}} className="stickie topic">
 				<span className="text">{this.props.text}</span>				
+				<img src={MoreIcon} className="more"/>
 			</div>
 		)
 	}

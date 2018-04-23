@@ -28,12 +28,15 @@ interface AppProps{
 
 class App extends React.Component<AppProps,{}> {
   render() {
-    const cols = ()=>{
-      var re = [];
-      for(var i = 0; i <= this.props.topics.length;i++)
-        re.push(<TopicColumn key={i} index={i}/>)
+    const cols = ()=> {
+      var re = [];            
+      for(var i = 0; i < this.props.topics.length;i++) {        
+        if(!this.props.topics[i].done) {          
+          re.push(<TopicColumn key={i} index={i}/>);
+        }
+      }        
       return re;
-    }
+    };
     const loggedInContent = (
       <div id="column-container"
           style={{gridTemplateColumns:`240px repeat(${this.props.topics.length+1}, 260px)`}}>

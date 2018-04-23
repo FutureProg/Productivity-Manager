@@ -1,9 +1,9 @@
 import {combineReducers} from 'redux';
 
-import {AddTopicModalAction, addTaskModalAction, TaskDetailModalAction} from '../actions/modals';
+import {AddTopicModalAction, addTaskModalAction, TaskDetailModalAction, TopicDetailModalAction} from '../actions/modals';
 import {TopicAction} from '../actions/topics';
 import * as constants from '../constants';
-import {StoreState,AddTopicModalState,TopicState, TaskState, AddTaskModalState, TaskDetailModalState, TaskObject, UserState, SystemState} from '../types';
+import {StoreState,AddTopicModalState,TopicState, TaskState, AddTaskModalState, TaskDetailModalState, TaskObject, UserState, SystemState, TopicDetailModalState} from '../types';
 import { TaskAction } from '../actions/tasks';
 import { UserActions } from '../actions/user';
 import { SystemActions } from '../actions/system';
@@ -218,6 +218,31 @@ export function taskDetailModal(state: TaskDetailModalState, action: TaskDetailM
 		}
 	}
 	return state;
+}
+
+export function topicDetailModal(state: TopicDetailModalState, action: TopicDetailModalAction): TopicDetailModalState{
+	if(!state){
+		return {
+			visible: false,
+			topicIndex: -1
+		}
+	}
+	switch(action.type){
+		case constants.OPEN_TOPIC_DETAIL_MODAL:
+		return {
+			...state,
+			visible: true,
+			topicIndex: action.payload
+		}
+		case constants.CLOSE_TOPIC_DETAIL_MODAL:
+		return {
+			...state,
+			visible: false,
+			topicIndex: -1
+		}
+		default: 
+		return state;
+	}
 }
 
 export function addTaskModal(state: AddTaskModalState, action: addTaskModalAction): AddTaskModalState{

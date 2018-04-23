@@ -23,8 +23,9 @@ interface State{
 class TaskDetailModal extends React.Component<Props,State>{	
 
 	private label:HTMLInputElement;
+	private title: HTMLInputElement;
 
-	constructor(props:Props){
+	constructor(props:Props) {
 		super(props);
 		this.deleteTask = this.deleteTask.bind(this);
 		this.close = this.close.bind(this);
@@ -33,66 +34,66 @@ class TaskDetailModal extends React.Component<Props,State>{
 		this.addStep = this.addStep.bind(this);
 	}
 
-	componentWillMount(){
+	componentWillMount() {
 		this.setState({
 			delDialogVisible: false,
 			steps: []	
-		})
+		});
 	}
 
-	componentWillReceiveProps(nextProps:Props){
-		if(nextProps.visible && !this.props.visible){			
+	componentWillReceiveProps(nextProps:Props) {
+		if(nextProps.visible && !this.props.visible) {			
 			this.label.value = nextProps.task.label;	
 			this.setState({
 				steps:[
 					...nextProps.task.steps
 				]
-			})		
+			});	
 		}
-		if(!nextProps.visible){
-			this.label.value = "";
+		if(!nextProps.visible) {
+			this.label.value = '';
 			this.setState({
 				steps: []
 			});
 		}
 	}
 
-	deleteTask(){		
+	deleteTask() {		
 		this.props.deleteTask(this.props.taskIndex);
 		this.close();
 	}
 
-	close(){
+	close() {
 		this.setState({
 			delDialogVisible:false
 		});
 		this.props.close();
 	}	
 
-	updateData(){
+	updateData() {
 		const nTask = this.props.task as TaskObject;
+		nTask.text = this.title.value.trim().length > 0? this.title.value:nTask.text;
 		nTask.label = this.label.value;		
-		nTask.steps = this.state.steps.filter((value)=>{
-			return value.text && value.text.length > 0
-		});
-		console.log(nTask.steps);
+		nTask.steps = this.state.steps.filter((value)=> {
+			return value.text && value.text.length > 0;
+		});		
 		this.props.updateTask(this.props.taskIndex,nTask);	
 		this.props.close();			
 	}
 
-	addStep(){
+	addStep() {
 		this.setState({
 			steps: [
 				...this.state.steps,
 				{
-					text: "",
+					text: '',
 					done:false
 				}
 			]
-		})
+		});
 	}
 
-	updateStep(index: number,text: string, done: boolean){		
+	updateStep(index: number,text: string, done: boolean) {		
 		this.setState({
 			steps: [
 				...this.state.steps.slice(0,index),
@@ -102,36 +103,39 @@ class TaskDetailModal extends React.Component<Props,State>{
 				},
 				...this.state.steps.slice(index+1)
 			]
-		})
+		});
 	}
 
-	render(){						
-		const openDelDialog = ()=>{
+	render() {						
+		const openDelDialog = ()=> {
 			this.setState({
 				delDialogVisible: true
 			});
-		}
-		const closeDelDialog = ()=>{
+		};
+		const closeDelDialog = ()=> {
 			this.setState({
 				delDialogVisible: false
 			});
-		}
+		};
 		const delDialogStyle = {
 			display: this.state.delDialogVisible? 'block' : 'none',
 			textAlign: 'center'
-		}
+		};
 
 		return (
 			<div className="modal" style={{display: this.props.visible? 'block':'none'}}>
 				<h2>Task Details</h2>
 				<div>
 					<h3>{this.props.task.text}</h3>
-					<label>Label:</label><input style={{marginLeft:'10px'}} ref={(label:any)=>this.label=label} type="text"/>
+					<label>New Task Name:</label> 
+					<input style={{marginLeft:'10px'}} ref={(label:HTMLInputElement)=>this.title=label} type="text"/><br/><br/>
+					<label>Label:</label>
+					<input style={{marginLeft:'10px'}} ref={(label:HTMLInputElement)=>this.label=label} type="text"/>
 					<h4>Steps:</h4>
-					<div style={{marginBottom:'10px',paddingLeft:'25px'}}>
+					<div style={{marginBottom:'10px',paddingLeft:'25px',maxHeight:'30vh',overflowY:'scroll'}}>
 						{								
-							this.state.steps.map((step,index)=>{
-								return <StepInputField key={index} index={index} step={step} onChangeDelegate={this.updateStep}/>
+							this.state.steps.map((step,index)=> {
+								return <StepInputField key={index} index={index} step={step} onChangeDelegate={this.updateStep}/>;
 							})
 						}
 						
@@ -155,7 +159,7 @@ class TaskDetailModal extends React.Component<Props,State>{
 					</div>
 				</div>
 			</div>
-		)
+		);
 	}
 
 }
@@ -163,12 +167,12 @@ class TaskDetailModal extends React.Component<Props,State>{
 const mstp = (state:StoreState) =>({
 	...state.taskDetailModal,
 	task: state.taskDetailModal.taskIndex >= 0? state.tasks.tasks[state.taskDetailModal.taskIndex]:{}
-})
+});
 
 const fstp = {
 	close: closeTaskDetailModal,
 	deleteTask,
 	updateTask
-}
+};
 
 export default connect(mstp,fstp)(TaskDetailModal);

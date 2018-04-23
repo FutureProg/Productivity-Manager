@@ -166,8 +166,8 @@ const collectTaskStickieTarget = (connect: DropTargetConnector, monitor: DropTar
 	targetMonitor: monitor,
 	draggedItemType: monitor.getItemType(),
 	clientOffset: monitor.getSourceClientOffset(),
-	isOver: monitor.isOver({shallow: true })
-})
+	isOver: monitor.isOver({shallow: true })				
+});
 
 const taskFSTP = ({
 	openDetailModal:openTaskDetailModal,

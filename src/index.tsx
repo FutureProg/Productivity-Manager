@@ -25,6 +25,10 @@ const store = createStore<StoreState>(reducers,{
     currentColumn: -1,
     visible: false
   },
+  topicDetailModal:{
+    visible: false,
+    topicIndex: -1
+  },
   taskDetailModal:{
     visible: false,
     taskIndex: -1

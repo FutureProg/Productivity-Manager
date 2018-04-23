@@ -37,3 +37,14 @@ export interface CLOSE_TASK_DETAIL_MODAL{
 export let closeTaskDetailModal = createAction(constants.CLOSE_TASK_DETAIL_MODAL);
 export let openTaskDetailModal = createAction(constants.OPEN_TASK_DETAIL_MODAL,(index:number)=>index);
 export type TaskDetailModalAction = OPEN_TASK_DETAIL_MODAL | CLOSE_TASK_DETAIL_MODAL;
+
+export interface OPEN_TOPIC_DETAIL_MODAL{
+	type: constants.OPEN_TOPIC_DETAIL_MODAL,
+	payload: number;
+}
+export interface CLOSE_TOPIC_DETAIL_MODAL {
+	type: constants.CLOSE_TOPIC_DETAIL_MODAL	
+}
+export let openTopicDetailModal = createAction(constants.OPEN_TOPIC_DETAIL_MODAL,(index:number)=>index);
+export let closeTopicDetailModal = createAction(constants.CLOSE_TOPIC_DETAIL_MODAL);
+export type TopicDetailModalAction = OPEN_TOPIC_DETAIL_MODAL | CLOSE_TOPIC_DETAIL_MODAL;

@@ -38,12 +38,15 @@ class TopicColumn extends React.Component<Props,{}>{
 									<TaskStickie key={1+index} {...item2}/>									
 									{			 
 										indexedSteps.filter((value)=>!value.done).map((item,index,array)=>
-											<StepStickie zIndex={array.length-index} 
+											<StepStickie 
+												zIndex={array.length-index} 
 												taskIndex={taskIndex} 
 												text={item.text} 
 												done={item.done} 
 												filteredIndex={index}
-												index={item.index} key={index} />
+												index={item.index} 
+												key={index} 
+											/>
 										)
 									}
 								</div>

@@ -7,6 +7,8 @@ export interface StoreState {
 
 	taskDetailModal: TaskDetailModalState;
 
+	topicDetailModal: TopicDetailModalState;
+
 	user: UserState;
 
 	system: SystemState;
@@ -25,6 +27,11 @@ export interface TaskDetailModalState {
 	taskIndex: number;
 }
 
+export interface TopicDetailModalState {
+	visible: boolean;
+	topicIndex: number;
+}
+
 export interface AddTopicModalState {
 	visible: boolean;
 }
@@ -37,9 +44,10 @@ export interface AddTaskModalState{
 export interface TopicState {
 	cards: TopicObject[];
 }
-export interface TopicObject{
+export interface TopicObject {
 	_id?: string;
 	text: string;
+	done?:boolean;
 }
 
 export interface TaskState {
