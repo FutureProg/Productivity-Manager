@@ -31,16 +31,18 @@ class App extends React.Component<AppProps,{}> {
   render() {
     const cols = ()=> {
       var re = [];            
-      for(var i = 0; i < this.props.topics.length;i++) {        
-        if(!this.props.topics[i].done) {          
+      for(var i = 0; i <= this.props.topics.length;i++) {                
+        if(this.props.topics[i] == null || !this.props.topics[i].done) {          
           re.push(<TopicColumn key={i} index={i}/>);
         }
       }        
       return re;
     };
     const loggedInContent = (
-      <div id="column-container"
-          style={{gridTemplateColumns:`240px repeat(${this.props.topics.length+1}, 260px)`}}>
+      <div 
+        id="column-container"
+        style={{gridTemplateColumns:`240px repeat(${this.props.topics.length+1}, 260px)`}}
+      >
           <div style={{gridColumn:1,gridRow:1}}>
             <h1>Topic</h1>
             <h1 style={{marginTop:'250px'}}>Tasks</h1>  
